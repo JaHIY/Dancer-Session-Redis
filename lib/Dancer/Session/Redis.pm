@@ -80,7 +80,7 @@ sub flush {
     my ($self) = @_;
 
     $self->redis->select($options{database});
-    $self->redis->set($self->id => Storable::freeze($self));
+    $self->redis->set($self->id => Storable::nfreeze($self));
     $self->redis->expire($self->id => $options{expire});
 
     $self;
